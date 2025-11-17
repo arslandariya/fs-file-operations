@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 min-h-screen flex flex-col items-center p-8">
+    <h1 class="text-5xl font-extrabold text-white tracking-wide mb-10 drop-shadow-lg">
+        Create File
+    </h1>
+    <div
+        class="w-full max-w-xl bg-zinc-800/60 backdrop-blur-lg border border-zinc-700 p-10 rounded-2xl shadow-2xl mb-14">
+
+        <form action="/create" method="post" class="flex flex-col gap-6">
+
+            <input
+                class="px-4 py-3 rounded-xl bg-zinc-700 text-white placeholder-gray-400 shadow-inner outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                type="text" placeholder="Enter File Name" name="title">
+
+            <textarea name="details"
+                class="px-4 py-3 rounded-xl bg-zinc-700 text-white placeholder-gray-400 shadow-inner outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none h-32"
+                placeholder="Write Your File Details"></textarea>
+
+            <select name="fileType"
+                class="px-4 py-3 rounded-xl bg-zinc-700 text-white shadow-inner outline-none focus:ring-2 focus:ring-purple-500 transition-all">
+                <option value="">-- Select File Type --</option>
+                <option value=".html">HTML</option>
+                <option value=".css">CSS</option>
+                <option value=".js">JS</option>
+                <option value=".py">Python</option>
+                <option value=".java">Java</option>
+                <option value=".cpp">C++</option>
+                <option value=".c">C</option>
+                <option value=".json">JSON</option>
+                <option value=".ts">TypeScript</option>
+                <option value=".php">PHP</option>
+                <option value=".rb">Ruby</option>
+                <option value=".go">Go</option>
+                <option value=".rs">Rust</option>
+                <option value=".swift">Swift</option>
+                <option value=".kt">Kotlin</option>
+                <option value=".sql">SQL</option>
+                <option value=".xml">XML</option>
+                <option value=".yml">YAML</option>
+                <option value=".md">Markdown</option>
+                <option value=".txt">Text</option>
+            </select>
+
+            <input
+                class="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-3 rounded-xl shadow-lg cursor-pointer transform hover:scale-105 transition-all"
+                type="submit" value="Create File">
+        </form>
+
+    </div>
+    <div class="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+        <% if(files.length> 0) { %>
+            <% files.forEach(function(val){ %>
+
+                <div
+                    class="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all">
+
+                    <h2 class="text-white text-xl font-semibold break-words">
+                        <%= val %>
+                    </h2>
+
+                    <div class="flex justify-between mt-4">
+                        <a href="/file/<%= val %>"
+                            class="text-blue-400 hover:text-blue-300 font-medium text-sm transition-all">
+                            Read More →
+                        </a>
+
+                        <a href="/edit/<%= val %>"
+                            class="text-green-400 hover:text-green-300 font-medium text-sm transition-all">
+                            Edit File
+                        </a>
+                    </div>
+
+                </div>
+
+                <% }) %>
+                    <% } else { %>
+
+                        <h3 class="text-zinc-400 col-span-full text-center text-xl tracking-wide">
+                            No Tasks Yet.
+                        </h3>
+
+                        <% } %>
+
+    </div>
+</body>
+
+</html>
